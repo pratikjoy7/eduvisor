@@ -1,0 +1,38 @@
+mysql:
+  build: ./docker/mysql/
+  container_name: eduvisor_mysql
+  environment:
+    MYSQL_DATABASE: eduvisor
+    MYSQL_ROOT_PASSWORD: zxc90zxc
+    MYSQL_USER: eduvisor_user
+    MYSQL_PASSWORD: qweqwe
+  ports:
+    - 3306:3306
+
+eduvisor_web:
+  build: ./
+  container_name: eduvisor_web
+  command: /code/docker/runner.sh
+  environment:
+    OAUTHLIB_INSECURE_TRANSPORT: '1'
+    MYSQL_HOST: mysql
+  ports:
+    - 5000:5000
+  links:
+    - mysql
+  volumes:
+    - ./:/code/
+
+eduvisor_admin:
+  build: ./
+  container_name: eduvisor_admin
+  command: /code/docker/runner_admin.sh
+  environment:
+    OAUTHLIB_INSECURE_TRANSPORT: '1'
+    MYSQL_HOST: mysql
+  ports:
+    - 5100:5010
+  links:
+    - mysql
+  volumes:
+    - ./:/code/
