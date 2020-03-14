@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Virtualenv
+.eduvisor/
+
+# IDE settings
+.vscode/
