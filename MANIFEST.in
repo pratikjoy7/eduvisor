@@ -1,0 +1,4 @@
+recursive-include eduvisor/templates *
+recursive-include eduvisor/static *
+recursive-include eduvisor/admin/templates *
+recursive-include eduvisor/web/templates *
