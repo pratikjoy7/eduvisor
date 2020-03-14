@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon"
+          href="{{ url_for('static', filename='eduvisor.ico') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='main.css') }}"/>
+    <title>EduVisor</title>
+</head>
+
+<nav class="navbar navbar-default navbar-expand-xl navbar-light bg-light navbar-size">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-left">
+            <li><h4 class="main-title">EduVisor</h4></li>
+        </ul>
+        {% if session.get('user') %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><h4 class="main-title"> Hello, {{ session['user']['name'] }}! </h4>
+                </li>
+                <li>
+                    <div class="dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                         role="button">
+                        <img src="{{ session['user']['picture'] }}" width="40px" height="40px" class="profile-image"/>
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ url_for('.auth', action='logout', _external=True) }}">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+</nav>
+
+<sidebar>
+    <aside class="sidebar-left">
+        <a href="{{ url_for('.index', _external=True) }}"
+           class="nc-logo-sidebar"><img
+                src="{{ url_for('static', filename='eduvisor_logo.png') }}"
+                width=27px height=27px>
+        </a>
+    </aside>
+</sidebar>
+<body>
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block body %}
+    <div class="login-container">
+        <div class="login-box">
+            <a class="nc-logo" href="#"></a>
+            <h4>EduVisor</h4>
+            <a href="{{ url_for('.auth', action='login') }}" class="google-button">
+                <img class="google-button__icon" src="{{ url_for('static', filename='google-logo.png') }}">
+                <span class="google-button__text">Sign in with Google</span>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
